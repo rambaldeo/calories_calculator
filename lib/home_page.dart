@@ -23,11 +23,11 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Form(
+            Form( //Form to take in user input
               key: _formKey,
               child: Column(
                 children: [
-                  TextFormField(
+                  TextFormField( //Take in the user target calories
                     controller: targetCaloriesController,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(labelText: 'Target Calories per Day'),
@@ -38,14 +38,14 @@ class _HomePageState extends State<HomePage> {
                       return null;
                     },
                   ),
-                  DateInputField(
+                  DateInputField( //Let the user select the date
                       controller: dateController,
                     onChanged: () {
                         setState(() {});
                     },
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton(
+                  ElevatedButton(//when pressed, push the information to the next page
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         Navigator.push(
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 20), //if there is an existing meal plan on the selected date, it will display the meal plan
             const Text(
               'Saved Meal Plans for ',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -133,6 +133,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  //Function to calculate the total calories in the meal plan
   calculateTotalCalories(List<MealPlanEntry> selectedItems) {
     double totalCalories = 0.0;
     for (var item in selectedItems){
@@ -141,6 +142,7 @@ class _HomePageState extends State<HomePage> {
     return totalCalories;
   }
 
+  //If the user wants to remove the meal plan
   void removeMealPlan(String date) {
     setState(() {
       savedMealPlans.remove(date);

@@ -29,7 +29,8 @@ class _MealPlanPageState extends State<MealPlanPage> {
     mealPlanFuture = getMealPlan(widget.databaseName, widget.date);
     selectedEntries = widget.selectedItems; // Initialize selectedEntries with passed items
   }
-  
+
+  //Function to calculate the total calories
   double calculateTotalCalories(List<MealPlanEntry> items){
     double totalCalories = 0.0;
     for (var item in items){
@@ -61,7 +62,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
 
               saveMealPlan("savedMealPlans", widget.date, widget.targetCalories, totalCalories, selectedEntries);
 
-              // Navigate back to the HomePage after a delay (optional)
+              // Navigate back to the HomePage
               Future.delayed(const Duration(seconds: 1), () {
                 Navigator.pop(context);
               });
