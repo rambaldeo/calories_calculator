@@ -95,7 +95,11 @@ class _HomePageState extends State<HomePage> {
                                 selectedItems: savedPlan.selectedItems
                             ),
                           ),
-                        );
+                        ).then((_) {
+                          // Clear the form when returning from MealPlanPage
+                          targetCaloriesController.clear();
+                          dateController.clear();
+                        });
                       },
                       child: ListTile(
                         title: Text('Date: ${savedPlan.date}'),
